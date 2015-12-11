@@ -139,7 +139,7 @@ public final class AggregateAndRecommendReducer extends
          * Issue: Equality tests should not be made with floating point values.
   	     * Solution: using "Float.compare(f1, f2) != 0" instead of "f1 != f2"
   	     * */
-        if (prefValue != BOOLEAN_PREF_VALUE) {
+        if (Float.compare(prefValue, BOOLEAN_PREF_VALUE) != 0) {
           numerators.assign(Functions.MULT, prefValue);
         }
       } else {

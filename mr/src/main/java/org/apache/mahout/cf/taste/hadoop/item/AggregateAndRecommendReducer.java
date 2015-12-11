@@ -135,11 +135,19 @@ public final class AggregateAndRecommendReducer extends
 
       if (numerators == null) {
         numerators = simColumn.clone();
+        /* URL: http://thething.disco.unimib.it/sonarqube/issues/search#issues=AVF9T6lwfPSRWuAsrjk1
+         * Issue: Equality tests should not be made with floating point values.
+  	     * Solution: using "Float.compare(f1, f2) != 0" instead of "f1 != f2"
+  	     * */
         if (prefValue != BOOLEAN_PREF_VALUE) {
           numerators.assign(Functions.MULT, prefValue);
         }
       } else {
-        if (prefValue != BOOLEAN_PREF_VALUE) {
+    	  /* URL: http://thething.disco.unimib.it/sonarqube/issues/search#issues=AVF9T6lwfPSRWuAsrjkz
+    	   * Issue: Equality tests should not be made with floating point values.
+    	   * Solution: using "Float.compare(f1, f2) != 0" instead of "f1 != f2"
+    	   * */
+        if (Float.compare(prefValue, BOOLEAN_PREF_VALUE) != 0) {
           simColumn.assign(Functions.MULT, prefValue);
         }
         numerators.assign(simColumn, Functions.PLUS);

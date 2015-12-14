@@ -376,7 +376,11 @@ public class VectorBenchmarks {
 
       // log.info("\n{}", mark);
       log.info("\n{}", mark.asCsvString());
-    } catch (OptionException e) {
+      /* URL: http://thething.disco.unimib.it/sonarqube/issues/search#issues=AVF81euUfPSRWuAsriCN
+       * Issue: When handling a caught exception, the original exception's message and stack trace should be logged or passed forward.
+       * Solution: Pass forward the original exception
+       */
+    } catch (OptionException e) { throw new RuntimeException(e); }{
       CommandLineUtil.printHelp(group);
     }
   }

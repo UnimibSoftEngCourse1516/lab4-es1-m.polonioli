@@ -101,7 +101,10 @@ public final class FastByIDMap<V> implements Serializable, Cloneable {
    */
   private int find(long key) {
     int theHashCode = (int) key & 0x7FFFFFFF; // make sure it's positive
-    long[] keys = this.keys;
+    /* URL: http://thething.disco.unimib.it/sonarqube/issues/search#issues=AVF9T6mYfPSRWuAsrjld
+     * Issue:  Local variables should not shadow class fields
+     * Solution: Remove the declaration of a new variable and use directly the class field "keys"
+     */
     int hashSize = keys.length;
     int jump = 1 + theHashCode % (hashSize - 2);
     int index = theHashCode % hashSize;
